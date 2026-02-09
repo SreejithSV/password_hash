@@ -1,0 +1,22 @@
+# OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Java
+*.class
+
+# Coverage
+coverage/
+*.lcov
+
+# Temporary files
+tmp/
+temp/
+
+# Git
+.git-rewrite/
+
+
+/venv
