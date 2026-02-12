@@ -1,22 +1,30 @@
-# OS junk
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Java
-*.class
+# Virtual environment
+/venv/
+/.env/
 
-# Coverage
-coverage/
-*.lcov
+# Database files
+*.sqlite3
+*.db
+*.sqlite
 
-# Temporary files
-tmp/
-temp/
+# Cache files
+*.cache
+*.log
+*.tmp
 
-# Git
-.git-rewrite/
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-
-/venv
+# Python packaging
+*.egg-info/
+dist/
+build/
+.eggs/

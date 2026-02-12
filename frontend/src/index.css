@@ -1,68 +1,208 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: 240 15% 4%;
+    --foreground: 180 100% 95%;
+
+    --card: 240 12% 7%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 240 12% 7%;
+    --popover-foreground: 180 100% 95%;
+
+    --primary: 120 100% 50%;
+    --primary-foreground: 240 15% 4%;
+
+    --secondary: 190 100% 42%;
+    --secondary-foreground: 240 15% 4%;
+
+    --muted: 240 10% 12%;
+    --muted-foreground: 180 10% 55%;
+
+    --accent: 285 100% 37%;
+    --accent-foreground: 180 100% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 30% 15%;
+    --input: 240 10% 14%;
+    --ring: 120 100% 50%;
+
+    --radius: 0.5rem;
+
+    --neon-green: 120 100% 50%;
+    --neon-cyan: 190 100% 50%;
+    --neon-magenta: 285 100% 50%;
+    --neon-purple: 270 100% 60%;
+
+    --terminal-bg: 240 15% 5%;
+    --terminal-text: 120 100% 50%;
+    --terminal-cursor: 120 100% 50%;
+
+    --glow-green: 0 0 10px hsl(120 100% 50% / 0.5), 0 0 30px hsl(120 100% 50% / 0.2);
+    --glow-cyan: 0 0 10px hsl(190 100% 50% / 0.5), 0 0 30px hsl(190 100% 50% / 0.2);
+    --glow-magenta: 0 0 10px hsl(285 100% 50% / 0.5), 0 0 30px hsl(285 100% 50% / 0.2);
+
+    --sidebar-background: 240 15% 4%;
+    --sidebar-foreground: 180 100% 95%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 240 15% 4%;
+    --sidebar-accent: 240 10% 12%;
+    --sidebar-accent-foreground: 180 100% 95%;
+    --sidebar-border: 180 30% 15%;
+    --sidebar-ring: 120 100% 50%;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
-  button {
-    background-color: #f9f9f9;
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .scanline-overlay {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.03) 2px,
+      hsl(0 0% 0% / 0.03) 4px
+    );
+  }
+
+  .neon-text-green {
+    color: hsl(var(--neon-green));
+    text-shadow: var(--glow-green);
+  }
+
+  .neon-text-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: var(--glow-cyan);
+  }
+
+  .neon-text-magenta {
+    color: hsl(var(--neon-magenta));
+    text-shadow: var(--glow-magenta);
+  }
+
+  .neon-border-green {
+    border-color: hsl(var(--neon-green) / 0.4);
+    box-shadow: var(--glow-green);
+  }
+
+  .neon-border-cyan {
+    border-color: hsl(var(--neon-cyan) / 0.4);
+    box-shadow: var(--glow-cyan);
+  }
+
+  .neon-border-magenta {
+    border-color: hsl(var(--neon-magenta) / 0.4);
+    box-shadow: var(--glow-magenta);
+  }
+
+  .terminal-box {
+    background: hsl(var(--terminal-bg));
+    border: 1px solid hsl(var(--neon-green) / 0.3);
+    box-shadow: inset 0 0 30px hsl(120 100% 50% / 0.03), var(--glow-green);
+  }
+
+  .glitch-text {
+    animation: glitch 2.5s infinite;
+  }
+
+  .blink-cursor::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+    color: hsl(var(--neon-green));
+  }
+
+  .neon-btn {
+    @apply relative overflow-hidden transition-all duration-300;
+    border: 1px solid hsl(var(--neon-green) / 0.5);
+    background: hsl(var(--neon-green) / 0.05);
+  }
+
+  .neon-btn:hover {
+    background: hsl(var(--neon-green) / 0.15);
+    border-color: hsl(var(--neon-green));
+    box-shadow: var(--glow-green), inset 0 0 20px hsl(120 100% 50% / 0.05);
+  }
+
+  .neon-btn-cyan {
+    border-color: hsl(var(--neon-cyan) / 0.5);
+    background: hsl(var(--neon-cyan) / 0.05);
+  }
+
+  .neon-btn-cyan:hover {
+    background: hsl(var(--neon-cyan) / 0.15);
+    border-color: hsl(var(--neon-cyan));
+    box-shadow: var(--glow-cyan), inset 0 0 20px hsl(190 100% 50% / 0.05);
+  }
+
+  .neon-btn-magenta {
+    border-color: hsl(var(--neon-magenta) / 0.5);
+    background: hsl(var(--neon-magenta) / 0.05);
+  }
+
+  .neon-btn-magenta:hover {
+    background: hsl(var(--neon-magenta) / 0.15);
+    border-color: hsl(var(--neon-magenta));
+    box-shadow: var(--glow-magenta), inset 0 0 20px hsl(285 100% 50% / 0.05);
+  }
+
+  .neon-btn-purple {
+    border-color: hsl(var(--neon-purple) / 0.5);
+    background: hsl(var(--neon-purple) / 0.05);
+  }
+
+  .neon-btn-purple:hover {
+    background: hsl(var(--neon-purple) / 0.15);
+    border-color: hsl(var(--neon-purple));
+    box-shadow: 0 0 10px hsl(270 100% 60% / 0.5), 0 0 30px hsl(270 100% 60% / 0.2), inset 0 0 20px hsl(270 100% 60% / 0.05);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--neon-green) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-green) / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
